@@ -1,3 +1,5 @@
+https://chatgpt.com/share/682b39ec-b2f4-8004-8363-8217bb115ee9
+
 jdbc url format : jdbc:<driver_name>://<host>:<port>/<database>?<params>
 jdbc:mysql://localhost:3306/edusuccess
 (Note database/schema must have already been created in dbms)
