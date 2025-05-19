@@ -1,0 +1,93 @@
+jdbc url format : jdbc:<driver_name>://<host>:<port>/<database>?<params>
+jdbc:mysql://localhost:3306/edusuccess
+(Note database/schema must have already been created in dbms)
+
+================================================================================================================================
+
+JDBC : 
+------
+- Low level API to communicate with Database
+- It defines only interfaces and it doesn’t provide real implementations
+- A JDBC "driver" is a concrete implementation of JDBC Interfaces for a specific database
+- Using Java code we can send requests to Database using JDBC APIs
+- The driver converts those API calls into MySQL-specific low-level protocol commands and handles the communication over the network to the DB.
+- We have to manually map SQL results to Java objects
+
+Disadvantages of JDBC :
+- You have to map ResultSet rows to Java objects yourself.
+- No support for handling object relationships 
+- You repeat the same code for opening connections, creating statements, closing resources, etc.
+- 	JDBC doesn't cache — repeated queries always hit the DB.
+
+
+
+JPA :
+-----
+- JPA is a specification/API to simplify Object relational mapping
+- JPA doesn't provide implementation – it needs a provider like Hibernate
+- It is NOT AN API defined to communicate with the database directly (unlike JDBC)
+- It defines interfaces like : EntityManager, @Entity, @OneToMany, etc.
+- No real logic inside. Just interfaces and annotations.
+- Uses Java Persistence Query Language (like SQL but for entities).
+
+
+Hibernate :
+-----------
+- Provides the actual implementation of the "JPA API".
+- Parses your entity classes.
+- Converts JPQL (or entity operations) into SQL.
+- Manages caching, transactions, dirty checking, etc.
+- Uses JDBC to "talk to the database".
+- It also adds extra features on top of JPA like: Caching and Lazy loading
+
+
+  JPA
+   ↓
+Hibernate
+   ↓
+JDBC API 
+   ↓
+JDBC Driver (e.g., mysql-connector-java)
+   ↓
+Database (e.g., MySQL, PostgreSQL)
+
+
+================================================================================================================================
+
+@Entity
+--------
+- @Entity tells Hibernate: “This Java class represents a database table — map it accordingly.”
+- So Hibernate: Knows it needs to persist, load, update, and delete instances of that class from the DB.
+- Converts Java objects ↔ SQL records, regardless of whether Hibernate created the table.
+- The @Entity annotation enables:   
+   -- EntityManager operations like persist, merge, find, remove 
+   -- JPQL (Java Persistence Query Language)
+   -- Relationships like @OneToMany, @ManyToOne
+   -- Caching and Lazy loading
+- Hibernate will only create a table automatically from your @Entity if you explicitly configure it to do so  using the     	spring.jpa.hibernate.ddl-auto= ? (create|update|create-drop)
+
+================================================================================================================================
+
+@OneToMany
+----------
+- @OneToMany (with mappedBy) is used in parent 
+- @ManyToOne + @JoinColumn (custom name for FK) is used in child 
+- So OneToMany on one side and ManyToOne on other side (***IMPORTANT***)
+- Two Parent entries should not map to the same child entry (**IMPORTANT***)
+- Always ManyToOne side will be the owning side and Foriegn key is created here only (not it OneToMany side)
+- mappedBy = "filed_name" tells JPA: "child owns the foreign key"
+- The value "field_name" refers to the field name in the Child entity that maps back to this Parent entity.
+- **NOTE : For One to Many relation : "  **
+- ** Otherwise it won't remain oneToMany ***
+- ** This would be main deciding factor ***
+
+
+@ManyToMany
+-----------
+
+
+
+
+
+
+
