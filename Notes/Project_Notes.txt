@@ -79,13 +79,17 @@ Database (e.g., MySQL, PostgreSQL)
 - Always ManyToOne side will be the owning side and Foriegn key is created here only (not it OneToMany side)
 - mappedBy = "filed_name" tells JPA: "child owns the foreign key"
 - The value "field_name" refers to the field name in the Child entity that maps back to this Parent entity.
-- **NOTE : For One to Many relation : "  **
+
 - ** Otherwise it won't remain oneToMany ***
 - ** This would be main deciding factor ***
 
 
 @ManyToMany
 -----------
+- Used when there is OneToMany relation on both sides (parent and child)
+- In ManyToMany : Two Parent entries "CAN" map to the "same child" entry (***IMPORTANT***)
+- Entity where you are writing "@JoinColumn" becomes the owning
+When both sides can have multiple of each other
 
 
 
