@@ -30,7 +30,7 @@ startDate
 fees
 teacher (Many to One)
 List<Enrollment> enrollments (One to Many)
-List<Test> tests (One to Many)
+List<Test> tests (Many to Many)
 
 
 Enrollment :
@@ -61,6 +61,7 @@ name
 testDate
 maxMarks
 subject
+testUrl;
 List<Batch>batches (Many to Many)
 List<TestResult> testResults (One to Many)
 

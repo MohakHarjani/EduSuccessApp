@@ -8,6 +8,8 @@ public class TestResult {
     private double marks;
     private String remarks;
 
+    @ManyToOne
+    @JoinColumn (name = "test_id")
     private Test test;
 
     @ManyToOne

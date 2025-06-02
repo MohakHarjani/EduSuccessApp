@@ -11,7 +11,7 @@ public class Batch {
 
     private String name;
 
-//    @Column(name = "ticher")
+
     @ManyToOne
     private Teacher teacher;
 }

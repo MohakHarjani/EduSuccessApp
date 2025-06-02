@@ -1,6 +1,7 @@
 package com.mohak.edusuccess.model;
 
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
@@ -23,7 +24,7 @@ public class Batch {
     @OneToMany (mappedBy = "batch")
     private List<Enrollment>enrollmentList;
 
-    @OneToMany (mappedBy = "batch")
+    @ManyToMany(mappedBy = "batchList")
     private List<Test>testList;
 
 

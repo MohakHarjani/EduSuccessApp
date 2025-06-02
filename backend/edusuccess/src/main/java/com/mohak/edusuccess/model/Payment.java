@@ -1,5 +1,7 @@
 package com.mohak.edusuccess.model;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 public class Payment
@@ -10,5 +12,7 @@ public class Payment
     private String paymentMode;
     private String note;
 
+    @ManyToOne
+    @JoinColumn (name = "enrollment_id")
     private Enrollment enrollment;
 }
